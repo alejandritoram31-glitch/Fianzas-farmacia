@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Control Financiero Farmacia</title>
+
+<link rel="stylesheet" href="styles.css">
+<link rel="manifest" href="manifest.json">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script src="https://apis.google.com/js/api.js"></script>
+<script src="https://accounts.google.com/gsi/client"></script>
+</head>
+
+<body class="dark">
+
+<div id="login">
+  <h2>Acceso Seguro</h2>
+  <input type="password" id="pinInput" placeholder="PIN">
+  <button onclick="validarPIN()">Entrar</button>
+</div>
+
+<div id="app" class="hidden">
+
+<h1>Control Financiero</h1>
+
+<section class="card">
+<h3>Registro Diario</h3>
+<input type="date" id="fecha">
+<input type="number" id="ventasDia" placeholder="Ventas del día">
+<button onclick="agregarDia()">Agregar día</button>
+</section>
+
+<section class="card">
+<h3>Gastos Semanales</h3>
+<input type="number" id="gastosFijos" placeholder="Gastos fijos">
+<input type="number" id="gastosVariables" placeholder="Gastos variables">
+</section>
+
+<section class="card">
+<h3>Distribución (%)</h3>
+<input type="number" id="pAhorro" placeholder="Ahorro %">
+<input type="number" id="pReinversion" placeholder="Reinversión %">
+</section>
+
+<section class="card">
+<h3>Meta Financiera</h3>
+<input type="number" id="meta" placeholder="Monto meta">
+</section>
+
+<button onclick="analizar()">Analizar Semana</button>
+<button onclick="cerrarSemana()">Cerrar Semana</button>
+
+<section class="card">
+<h3>Resumen</h3>
+<div id="resumen"></div>
+</section>
+
+<section class="card">
+<canvas id="grafica"></canvas>
+</section>
+
+<section class="card">
+<h3>Exportar y Respaldo</h3>
+<button onclick="exportarExcel()">Excel</button>
+<button onclick="exportarPDF()">PDF</button>
+<button onclick="iniciarSesionDrive()">Backup Google Drive</button>
+<button onclick="borrarDatos()">Borrar Datos</button>
+</section>
+
+</div>
+
+<script src="app.js"></script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js');
+}
+</script>
+
+</body>
+</html>
